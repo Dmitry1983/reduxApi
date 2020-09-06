@@ -56,6 +56,6 @@ export const addPost = (title, text) => ({
 export const removePost = (id) => {
 	return {
 		type: REMOVE_POST,
-		payload: id,
+		id: id,
 	}
 }

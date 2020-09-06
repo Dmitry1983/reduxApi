@@ -35,8 +35,8 @@ const PostScreen = () => {
 		<TouchableOpacity
 			style={styles.item}
 			onPress={() => {}}
-			onLongPress={(id) => {
-				handlerRemovePost(id)
+			onLongPress={() => {
+				handlerRemovePost(item.id)
 			}}
 		>
 			<Text style={styles.title}>
@@ -62,12 +62,21 @@ const PostScreen = () => {
 					numberOfLines={4}
 					placeholder="Post"
 				/>
-				<TouchableOpacity
-					style={styles.button}
-					onPress={() => handlerAddPost(postTitle, postText)}
-				>
-					<Text style={styles.buttonTitle}>Save Post</Text>
-				</TouchableOpacity>
+				<View style={styles.rowButton}>
+					<TouchableOpacity
+						style={[styles.button, styles.buttonWidth]}
+						onPress={() => handlerAddPost(postTitle, postText)}
+					>
+						<Text style={styles.buttonTitle}>Save Post</Text>
+					</TouchableOpacity>
+					<TouchableOpacity
+						style={[styles.button, styles.buttonWidth]}
+						onPress={() => handlerAddPost(postTitle, postText)}
+					>
+						<Text style={styles.buttonTitle}>Remove Post</Text>
+					</TouchableOpacity>
+				</View>
+
 				<TouchableOpacity
 					style={styles.button}
 					onPress={() => console.log(store.getState())}
@@ -78,7 +87,7 @@ const PostScreen = () => {
 					<FlatList
 						data={Data}
 						renderItem={Item}
-						keyExtractor={(key) => key.id.toString()}
+						keyExtractor={(key) => key.id} // .toString()
 					/>
 				</View>
 			</View>
@@ -112,6 +121,13 @@ const styles = StyleSheet.create({
 		borderWidth: StyleSheet.hairlineWidth,
 		alignItems: 'center',
 		justifyContent: 'center',
+	},
+	buttonWidth: {
+		width: 140,
+	},
+	rowButton: {
+		flexDirection: 'row',
+		justifyContent: 'space-between',
 	},
 	buttonTitle: {
 		color: 'white',

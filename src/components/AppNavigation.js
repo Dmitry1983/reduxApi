@@ -20,6 +20,7 @@ export default function AppNavigation() {
 				<Tab.Screen name="Count" component={CountScreen} />
 				<Tab.Screen name="Name" component={NameScreen} />
 				<Tab.Screen name="Post" component={PostScreen} />
+				<Tab.Screen name="API" component={PostScreen} />
 			</Tab.Navigator>
 		</NavigationContainer>
 	)

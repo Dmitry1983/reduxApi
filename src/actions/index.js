@@ -7,6 +7,7 @@ import {
 	ADD_POST,
 	REMOVE_POST,
 	EDIT_POST,
+	TOGGLE_POST,
 } from '../types'
 
 export const increment = (i) => {
@@ -53,9 +54,42 @@ export const addPost = (title, text) => ({
 	text,
 })
 
-export const removePost = (id) => {
-	return {
-		type: REMOVE_POST,
-		id: id,
-	}
-}
+export const removePost = (id) => ({
+	type: REMOVE_POST,
+	id: id,
+})
+
+export const togglePost = (id) => ({
+	type: TOGGLE_POST,
+	id,
+})
+
+// let nextTodoId = 0
+// export const addTodo = text => {
+//   return {
+//     type: 'ADD_TODO',
+//     id: nextTodoId++,
+//     text
+//   }
+// }
+
+// export const setVisibilityFilter = filter => {
+//   return {
+//     type: 'SET_VISIBILITY_FILTER',
+//     filter
+//   }
+// }
+
+// export const toggleTodo = id => {
+//   return {
+//     type: 'TOGGLE_TODO',
+//     id
+//   }
+// }
+
+// export const deleteTodo = id => {
+//   return {
+//     type: 'DELETE_TODO',
+//     id: id
+//   }
+// }

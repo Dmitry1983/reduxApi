@@ -7,12 +7,13 @@ import {
 	TouchableOpacity,
 	TextInput,
 	FlatList,
+	Alert,
 } from 'react-native'
 import { useDispatch, useSelector, useStore } from 'react-redux'
-import { addPost, removePost } from '../actions'
+import { addPost, removePost, togglePost } from '../actions'
 
 const PostScreen = () => {
-	let Data = useSelector((state) => state.posts)
+	const Data = useSelector((state) => state.posts)
 	const dispatch = useDispatch()
 	const store = useStore()
 	const [postTitle, setPostTitle] = useState('')
@@ -21,6 +22,8 @@ const PostScreen = () => {
 	const handlerAddPost = useCallback(
 		(title, text) => {
 			dispatch(addPost(title, text))
+			setPostText('')
+			setPostTitle('')
 		},
 		[dispatch]
 	)
@@ -31,19 +34,57 @@ const PostScreen = () => {
 		},
 		[dispatch]
 	)
-	const Item = ({ item }) => (
-		<TouchableOpacity
-			style={styles.item}
-			onPress={() => {}}
-			onLongPress={() => {
-				handlerRemovePost(item.id)
-			}}
-		>
-			<Text style={styles.title}>
-				Titel : {item.title} {item.text}
-			</Text>
-		</TouchableOpacity>
+
+	const handlerTogglePost = useCallback(
+		(id) => {
+			dispatch(togglePost(id))
+		},
+		[dispatch]
 	)
+	const Item = ({ item }) => {
+		const backgroundColor = (completed) => (completed ? '#88FF4E' : '#FFE6B6')
+		return (
+			<TouchableOpacity
+				style={[
+					styles.item,
+					{ backgroundColor: backgroundColor(item.completed) },
+				]}
+				onPress={() => {
+					handlerTogglePost(item.id)
+				}}
+				// onLongPress={() => {
+				// 	handlerRemovePost(item.id)
+				// }}
+				onLongPress={() => {
+					removeHandler(item.id)
+				}}
+			>
+				<Text style={styles.title}>
+					Titel : {item.title} {item.text}
+				</Text>
+			</TouchableOpacity>
+		)
+	}
+	const removeHandler = (id) => {
+		Alert.alert(
+			'Удаление поста',
+			'Вы точно хотите удалить пост?',
+			[
+				{
+					text: 'Отменить',
+					style: 'cancel',
+				},
+				{
+					text: 'Удалить',
+					style: 'destructive',
+					onPress() {
+						handlerRemovePost(id)
+					},
+				},
+			],
+			{ cancelable: false }
+		)
+	}
 
 	return (
 		<SafeAreaView>
@@ -69,12 +110,6 @@ const PostScreen = () => {
 					>
 						<Text style={styles.buttonTitle}>Save Post</Text>
 					</TouchableOpacity>
-					<TouchableOpacity
-						style={[styles.button, styles.buttonWidth]}
-						onPress={() => handlerAddPost(postTitle, postText)}
-					>
-						<Text style={styles.buttonTitle}>Remove Post</Text>
-					</TouchableOpacity>
 				</View>
 
 				<TouchableOpacity
@@ -87,7 +122,7 @@ const PostScreen = () => {
 					<FlatList
 						data={Data}
 						renderItem={Item}
-						keyExtractor={(key) => key.id} // .toString()
+						keyExtractor={(key) => key.id.toString()} // .toString()
 					/>
 				</View>
 			</View>
@@ -126,7 +161,7 @@ const styles = StyleSheet.create({
 		width: 140,
 	},
 	rowButton: {
-		flexDirection: 'row',
+		flexDirection: 'row-reverse',
 		justifyContent: 'space-between',
 	},
 	buttonTitle: {
@@ -134,7 +169,6 @@ const styles = StyleSheet.create({
 		fontSize: 18,
 	},
 	item: {
-		backgroundColor: '#FFE6B6',
 		paddingLeft: 10,
 		justifyContent: 'center',
 		borderRadius: 8,

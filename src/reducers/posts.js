@@ -1,4 +1,4 @@
-import { ADD_POST, EDIT_POST, REMOVE_POST } from '../types'
+import { ADD_POST, EDIT_POST, REMOVE_POST, TOGGLE_POST } from '../types'
 
 const initialState = []
 
@@ -18,7 +18,11 @@ export default function counter(state = initialState, action) {
 		case EDIT_POST:
 			return [...state]
 		case REMOVE_POST:
-			return state.filter((p) => p.id !== action.id)
+			return state.filter((post) => post.id !== action.id)
+		case TOGGLE_POST:
+			return state.map((post) =>
+				post.id === action.id ? { ...post, completed: !post.completed } : post
+			)
 		default:
 			return state
 	}

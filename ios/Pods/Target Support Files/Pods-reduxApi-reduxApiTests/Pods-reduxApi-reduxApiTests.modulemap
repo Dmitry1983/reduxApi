@@ -1,0 +1,6 @@
+module Pods_reduxApi_reduxApiTests {
+  umbrella header "Pods-reduxApi-reduxApiTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

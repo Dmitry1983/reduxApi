@@ -1,0 +1,8 @@
+export const INCREMENT = 'INCREMENT'
+export const DECREMENT = 'DECREMENT'
+export const RESET = 'RESET'
+export const CHANGE_FIRST_NAME = 'CHANGE_FIRST_NAME'
+export const CHANGE_SECONDE_NAME = 'CHANGE_SECONDE_NAME'
+export const ADD_POST = 'ADD_POST'
+export const EDIT_POST = 'EDIT_POST'
+export const REMOVE_POST = 'REMOVE_POST'

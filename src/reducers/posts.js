@@ -16,7 +16,9 @@ export default function counter(state = initialState, action) {
 				},
 			]
 		case EDIT_POST:
-			return [...state]
+			return state.map((post) =>
+				post.id === action.id ? { ...post, completed: !post.completed } : post
+			)
 		case REMOVE_POST:
 			return state.filter((post) => post.id !== action.id)
 		case TOGGLE_POST:

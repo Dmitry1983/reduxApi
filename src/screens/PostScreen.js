@@ -67,17 +67,22 @@ const PostScreen = () => {
 	}
 	const removeHandler = (id) => {
 		Alert.alert(
-			'Удаление поста',
-			'Вы точно хотите удалить пост?',
+			'Post correction? ',
+			'What do you want to do with the post?',
 			[
 				{
-					text: 'Отменить',
+					text: 'Cancel',
 					style: 'cancel',
 				},
 				{
-					text: 'Удалить',
+					text: 'Edit',
+					style: 'default',
+					onPress: () => console.log('Edit Pressed'),
+				},
+				{
+					text: 'Remove',
 					style: 'destructive',
-					onPress() {
+					onPress: () => {
 						handlerRemovePost(id)
 					},
 				},

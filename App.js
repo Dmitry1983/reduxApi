@@ -4,11 +4,12 @@ import { Provider } from 'react-redux'
 import { store, persistor } from './src/store'
 import AppNavigation from './src/components/AppNavigation'
 import { PersistGate } from 'redux-persist/integration/react'
+import RenderLoader from './src/components/RenderLoader'
 
 const App = () => {
 	return (
 		<Provider store={store}>
-			<PersistGate loading={null} persistor={persistor}>
+			<PersistGate loading={<RenderLoader />} persistor={persistor}>
 				<AppNavigation />
 			</PersistGate>
 		</Provider>

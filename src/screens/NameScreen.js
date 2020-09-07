@@ -54,7 +54,7 @@ const NameScreen = () => {
 				</View>
 				<TouchableOpacity
 					style={styles.button}
-					// onPress={() => console.log(store.getState())}
+					onPress={() => console.log(store.getState())}
 				>
 					<Text style={styles.buttonTitle}>Console store.getState()</Text>
 				</TouchableOpacity>

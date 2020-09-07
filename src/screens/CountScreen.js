@@ -7,7 +7,7 @@ import {
 	TouchableOpacity,
 } from 'react-native'
 import { useDispatch, useSelector, useStore } from 'react-redux'
-import { increment, decrement, reset } from '../actions'
+import { increment, decrement, reset, incrementAsync } from '../actions'
 
 const CountScreen = () => {
 	const count = useSelector((state) => state.counter.summ)
@@ -16,6 +16,9 @@ const CountScreen = () => {
 
 	const handlerIncrement = useCallback(() => {
 		dispatch(increment(1))
+	}, [dispatch])
+	const handlerIncrementAsync = useCallback(() => {
+		dispatch(incrementAsync(1))
 	}, [dispatch])
 	const handlerDecrement = useCallback(() => {
 		dispatch(decrement(1))
@@ -36,7 +39,8 @@ const CountScreen = () => {
 					<TouchableOpacity
 						style={styles.buttonAdd}
 						// onPress={() => dispatch(increment(1))}
-						onPress={handlerIncrement}
+						//onPress={handlerIncrement}
+						onPress={handlerIncrementAsync}
 					>
 						<Text style={styles.buttonTitle}>Add</Text>
 					</TouchableOpacity>

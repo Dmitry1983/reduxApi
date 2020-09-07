@@ -14,6 +14,15 @@ export const increment = (i) => ({
 	type: INCREMENT,
 	payload: i,
 })
+export function incrementAsync(i) {
+	return (dispatch) => {
+		dispatch(increment(i))
+		setTimeout(() => {
+			// You can invoke sync or async actions with `dispatch`
+			dispatch(increment(i))
+		}, 3000)
+	}
+}
 
 export const decrement = (i) => ({
 	type: DECREMENT,

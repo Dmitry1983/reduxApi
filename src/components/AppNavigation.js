@@ -12,7 +12,7 @@ export default function AppNavigation() {
 	return (
 		<NavigationContainer>
 			<Tab.Navigator
-				initialRouteName="Post"
+				initialRouteName="API"
 				tabBarOptions={{
 					activeTintColor: '#e91e63',
 					labelStyle: { fontSize: 18 },

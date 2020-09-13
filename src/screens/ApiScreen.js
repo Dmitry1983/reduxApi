@@ -15,30 +15,31 @@ const apiUrl =
 const headerKey = {} // { 'X-Yandex-API-Key': 'bc8c9f81-23e4-46e9-95af-1d77ccc59410' }
 
 const ApiScreen = () => {
-	const [result, setResult] = useState(undefined)
-	const [data, setData] = useState([])
-	const axiosRequst = axios.create({
-		timeout: 1000,
-		headers: headerKey,
-	})
+	// const [result, setResult] = useState(undefined)
+	// const [data, setData] = useState([])
+	// const axiosRequst = axios.create({
+	// 	timeout: 1000,
+	// 	headers: headerKey,
+	// })
 
-	const getAxiosRequst = () => {
-		axiosRequst
-			.get(apiUrl)
-			.then((res) => {
-				// console.log(res) // Результат ответа от сервера
-				setResult(res)
-				setData(res.data.MRData.DriverTable.Drivers)
-			})
-			.catch((error) => {
-				console.log('Catch error : ' + error) // Ошибка с сервера
-			})
-	}
+	// const getAxiosRequst = () => {
+	// 	axiosRequst
+	// 		.get(apiUrl)
+	// 		.then((res) => {
+	// 			// console.log(res) // Результат ответа от сервера
+	// 			setResult(res)
+	// 			setData(res.data.MRData.DriverTable.Drivers)
+	// 		})
+	// 		.catch((error) => {
+	// 			console.log('Catch error : ' + error) // Ошибка с сервера
+	// 		})
+	// }
 
 	const Item = ({ item }) => {
 		return (
 			<TouchableOpacity style={styles.item} activeOpacity={0.7}>
 				<Text style={styles.title}>
+					Item: {'\n'}
 					Name : {item.familyName} {item.givenName} {'\n'}
 					Date of birth: {item.dateOfBirth} {'\n'}
 					Nationality: {item.nationality} {'\n'}
@@ -50,23 +51,28 @@ const ApiScreen = () => {
 
 	return (
 		<SafeAreaView style={styles.view}>
-			<TouchableOpacity style={styles.button} onPress={() => getAxiosRequst()}>
+			<TouchableOpacity
+				style={styles.button}
+				// onPress={() => getAxiosRequst()}
+				onPress={() => {}}
+			>
 				<Text style={styles.buttonTitle}>axios get</Text>
 			</TouchableOpacity>
 			<TouchableOpacity
 				style={styles.button}
 				//onPress={() => console.log(result.data.MRData.DriverTable.Drivers)}
-				onPress={() => console.log(result)}
+				// onPress={() => console.log(result)}
+				onPress={() => {}}
 			>
 				<Text style={styles.buttonTitle}>console.log</Text>
 			</TouchableOpacity>
 			{/* <Text>{result === '' ? result.data.MRData.total : null}</Text> */}
 			<View style={styles.container}>
-				<FlatList
+				{/* <FlatList
 					data={data}
 					renderItem={Item}
 					keyExtractor={(key) => key.driverId.toString()} // .toString()
-				/>
+				/> */}
 			</View>
 		</SafeAreaView>
 	)
@@ -108,7 +114,7 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 		borderRadius: 8,
 		marginVertical: 8,
-		height: 100,
+		height: 120,
 		backgroundColor: '#999999',
 	},
 })

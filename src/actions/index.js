@@ -1,7 +1,7 @@
 import { increment, decrement, reset, incrementAsync } from './counterActions'
 import { changeFirstName, changeSecondeName } from './namesActions'
 import { addPost, removePost, togglePost, editPost } from './postsActions'
-import { loadDriversAsync } from './racesActions'
+import { loadDriversAsync, loadDrivers, resetDrivers } from './racesActions'
 
 export {
 	decrement,
@@ -15,4 +15,6 @@ export {
 	togglePost,
 	editPost,
 	loadDriversAsync,
+	loadDrivers,
+	resetDrivers,
 }

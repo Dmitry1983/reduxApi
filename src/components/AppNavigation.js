@@ -4,7 +4,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import CountScreen from '../screens/CountScreen'
 import NameScreen from '../screens/NameScreen'
 import PostScreen from '../screens/PostScreen'
-import ApiScreen from '../screens/ApiScreen'
+import RaceScreen from '../screens/RaceScreen'
 
 const Tab = createBottomTabNavigator()
 
@@ -12,7 +12,7 @@ export default function AppNavigation() {
 	return (
 		<NavigationContainer>
 			<Tab.Navigator
-				initialRouteName="API"
+				initialRouteName="Race"
 				tabBarOptions={{
 					activeTintColor: '#e91e63',
 					labelStyle: { fontSize: 18 },
@@ -21,7 +21,7 @@ export default function AppNavigation() {
 				<Tab.Screen name="Count" component={CountScreen} />
 				<Tab.Screen name="Name" component={NameScreen} />
 				<Tab.Screen name="Post" component={PostScreen} />
-				<Tab.Screen name="API" component={ApiScreen} />
+				<Tab.Screen name="Race" component={RaceScreen} />
 			</Tab.Navigator>
 		</NavigationContainer>
 	)

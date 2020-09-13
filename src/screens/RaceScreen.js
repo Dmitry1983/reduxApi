@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useCallback } from 'react'
 import {
 	View,
 	Text,
@@ -7,6 +7,8 @@ import {
 	TouchableOpacity,
 	FlatList,
 } from 'react-native'
+import { useDispatch, useSelector, useStore } from 'react-redux'
+import { loadDriversAsync, loadDrivers, resetDrivers } from '../actions'
 import axios from 'react-native-axios'
 
 const apiUrl =
@@ -14,7 +16,17 @@ const apiUrl =
 //'https://api.weather.yandex.ru/v2/informers?lat=55.75396&lon=37.620393&lang=ru_RU'
 const headerKey = {} // { 'X-Yandex-API-Key': 'bc8c9f81-23e4-46e9-95af-1d77ccc59410' }
 
-const ApiScreen = () => {
+const RaceScreen = () => {
+	const Drivers = useSelector((state) => state.races.drivers)
+	const dispatch = useDispatch()
+	const store = useStore()
+
+	const handlerLoadDriversAsync = useCallback(() => {
+		dispatch(loadDriversAsync())
+	}, [dispatch])
+	const handlerResetDrivers = useCallback(() => {
+		dispatch(resetDrivers())
+	}, [dispatch])
 	// const [result, setResult] = useState(undefined)
 	// const [data, setData] = useState([])
 	// const axiosRequst = axios.create({
@@ -54,7 +66,9 @@ const ApiScreen = () => {
 			<TouchableOpacity
 				style={styles.button}
 				// onPress={() => getAxiosRequst()}
-				onPress={() => {}}
+				onPress={() => {
+					handlerLoadDriversAsync()
+				}}
 			>
 				<Text style={styles.buttonTitle}>axios get</Text>
 			</TouchableOpacity>
@@ -62,17 +76,19 @@ const ApiScreen = () => {
 				style={styles.button}
 				//onPress={() => console.log(result.data.MRData.DriverTable.Drivers)}
 				// onPress={() => console.log(result)}
-				onPress={() => {}}
+				onPress={() => {
+					handlerResetDrivers()
+				}}
 			>
-				<Text style={styles.buttonTitle}>console.log</Text>
+				<Text style={styles.buttonTitle}>reset</Text>
 			</TouchableOpacity>
 			{/* <Text>{result === '' ? result.data.MRData.total : null}</Text> */}
 			<View style={styles.container}>
-				{/* <FlatList
-					data={data}
+				<FlatList
+					data={Drivers}
 					renderItem={Item}
 					keyExtractor={(key) => key.driverId.toString()} // .toString()
-				/> */}
+				/>
 			</View>
 		</SafeAreaView>
 	)
@@ -119,4 +135,4 @@ const styles = StyleSheet.create({
 	},
 })
 
-export default ApiScreen
+export default RaceScreen

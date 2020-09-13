@@ -1,4 +1,4 @@
-import { LOAD_DRIVERS, ADD_DRIVERS, RESET_DRIVERS } from '../types'
+import { LOAD_DRIVERS, RESET_DRIVERS } from '../types'
 
 const initialState = {
 	drivers: [],
@@ -11,11 +11,20 @@ export default function races(state = initialState, action) {
 	// console.log(action)
 	switch (action.type) {
 		case LOAD_DRIVERS:
-			return state
-		case ADD_DRIVERS:
-			return state
+			// return { ...state, drivers: action.payload }
+			return { ...state, drivers: [...action.payload] }
+
+		// case 'LOAD_DRIVERS':
+		// 	return {...state.drivers[
+		// 		...state, {action.payload}
+		// 	]}
 		case RESET_DRIVERS:
-			return state
+			// return {
+			// 	...state,
+			// 	drivers: [],
+			// 	// constructors: [],
+			// }
+			return (state = initialState)
 		default:
 			return state
 	}

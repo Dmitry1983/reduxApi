@@ -12,7 +12,7 @@ export default function races(state = initialState, action) {
 	switch (action.type) {
 		case LOAD_DRIVERS:
 			// return { ...state, drivers: action.payload }
-			return { ...state, drivers: [...action.payload] }
+			return { ...state, drivers: [...state.drivers, ...action.payload] }
 
 		// case 'LOAD_DRIVERS':
 		// 	return {...state.drivers[

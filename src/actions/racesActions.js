@@ -2,7 +2,7 @@ import { LOAD_DRIVERS, RESET_DRIVERS, ADD_DRIVERS } from '../types'
 import axios from 'react-native-axios'
 
 const apiUrl =
-	'http://ergast.com/api/f1/drivers.json?callback?limit=30&offset=0'
+	'http://ergast.com/api/f1/drivers.json?callback?limit=30&offset=60'
 const headerKey = []
 
 const axiosRequst = axios.create({

@@ -16,6 +16,20 @@ const apiUrl =
 //'https://api.weather.yandex.ru/v2/informers?lat=55.75396&lon=37.620393&lang=ru_RU'
 const headerKey = {} // { 'X-Yandex-API-Key': 'bc8c9f81-23e4-46e9-95af-1d77ccc59410' }
 
+const xmltoJS = (xml) => {
+	let parseString = require('react-native-xml2js').parseString
+	let outJSON = ''
+	parseString(xml, function (err, result) {
+		if (err) {
+			// console.log(err.stack)
+			outJSON = err.stack
+		}
+		/// console.log(result)
+		outJSON = result
+	})
+	return outJSON
+}
+
 const RaceScreen = () => {
 	const Drivers = useSelector((state) => state.races.drivers)
 	const dispatch = useDispatch()
@@ -51,11 +65,11 @@ const RaceScreen = () => {
 		return (
 			<TouchableOpacity style={styles.item} activeOpacity={0.7}>
 				<Text style={styles.title}>
-					Item: {'\n'}
+					{/* Item: {'\n'} */}
 					Name : {item.familyName} {item.givenName} {'\n'}
 					Date of birth: {item.dateOfBirth} {'\n'}
 					Nationality: {item.nationality} {'\n'}
-					URL: {item.url}
+					{/* URL: {item.url} */}
 				</Text>
 			</TouchableOpacity>
 		)
@@ -75,7 +89,7 @@ const RaceScreen = () => {
 			<TouchableOpacity
 				style={styles.button}
 				//onPress={() => console.log(result.data.MRData.DriverTable.Drivers)}
-				// onPress={() => console.log(result)}
+
 				onPress={() => {
 					handlerResetDrivers()
 				}}
@@ -130,8 +144,11 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 		borderRadius: 8,
 		marginVertical: 8,
-		height: 120,
-		backgroundColor: '#999999',
+		height: 80,
+		backgroundColor: '#D0D0D0',
+	},
+	title: {
+		fontSize: 20,
 	},
 })
 

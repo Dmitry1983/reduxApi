@@ -18,7 +18,9 @@ const RaceSearchScreen = () => {
 	const searchDrivers = _.filter(Drivers, function (item) {
 		return (
 			item.familyName.toLowerCase().startsWith(value.toLowerCase()) ||
-			item.givenName.toLowerCase().startsWith(value.toLowerCase())
+			item.givenName.toLowerCase().startsWith(value.toLowerCase()) ||
+			item.nationality.toLowerCase().startsWith(value.toLowerCase()) ||
+			item.dateOfBirth.toLowerCase().startsWith(value.toLowerCase())
 		)
 	})
 	console.log(searchDrivers)
@@ -101,7 +103,7 @@ const styles = StyleSheet.create({
 		borderWidth: StyleSheet.hairlineWidth,
 		borderRadius: 10,
 		marginVertical: 8,
-
+		borderStyle: 'dotted',
 		height: 80,
 		//backgroundColor: '#fffef1',
 	},

@@ -20,7 +20,7 @@ const RaceSearchScreen = () => {
 			item.familyName.toLowerCase().startsWith(value.toLowerCase()) ||
 			item.givenName.toLowerCase().startsWith(value.toLowerCase()) ||
 			item.nationality.toLowerCase().startsWith(value.toLowerCase()) ||
-			item.dateOfBirth.toLowerCase().startsWith(value.toLowerCase())
+			item.dateOfBirth.startsWith(value)
 		)
 	})
 	console.log(searchDrivers)

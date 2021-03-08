@@ -10,6 +10,7 @@ import {
 import { useDispatch, useSelector, useStore } from 'react-redux'
 import { loadDriversAsync, loadDrivers, resetDrivers } from '../actions'
 import axios from 'react-native-axios'
+// to master branch
 
 const apiUrl =
 	'http://ergast.com/api/f1/drivers.json?callback?limit=30&offset=0'

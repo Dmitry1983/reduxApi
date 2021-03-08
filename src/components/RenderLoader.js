@@ -4,7 +4,7 @@ import { StyleSheet, SafeAreaView, Text, ActivityIndicator } from 'react-native'
 const RenderLoader = () => {
 	return (
 		<SafeAreaView>
-			<Text>Render Loader</Text>
+			{/* <Text>Render Loader</Text> */}
 			<ActivityIndicator size={'large'} color={'#000'} />
 		</SafeAreaView>
 	)

@@ -4,10 +4,11 @@ import {
 	Text,
 	StyleSheet,
 	SafeAreaView,
-	TouchableOpacity,
+	TouchableWithoutFeedback,
 	FlatList,
 	TextInput,
 } from 'react-native'
+import RenderLoader from '../components/RenderLoader'
 import _ from 'lodash'
 import { useSelector } from 'react-redux'
 
@@ -26,15 +27,17 @@ const RaceSearchScreen = () => {
 	console.log(searchDrivers)
 	const Item = ({ item }) => {
 		return (
-			<TouchableOpacity style={styles.item} activeOpacity={0.7}>
-				<Text style={styles.title}>
-					{/* Item: {'\n'} */}
-					Name : {item.familyName} {item.givenName} {'\n'}
-					Date of birth: {item.dateOfBirth} {'\n'}
-					Nationality: {item.nationality} {'\n'}
-					{/* URL: {item.url} */}
-				</Text>
-			</TouchableOpacity>
+			<TouchableWithoutFeedback>
+				<View style={styles.item}>
+					<Text style={styles.title}>
+						{/* Item: {'\n'} */}
+						Name : {item.familyName} {item.givenName} {'\n'}
+						Date of birth: {item.dateOfBirth} {'\n'}
+						Nationality: {item.nationality} {'\n'}
+						{/* URL: {item.url} {'\n'} */}
+					</Text>
+				</View>
+			</TouchableWithoutFeedback>
 		)
 	}
 
@@ -50,7 +53,6 @@ const RaceSearchScreen = () => {
 				<View style={styles.container}>
 					<FlatList
 						data={searchDrivers}
-						//data={Drivers}
 						renderItem={Item}
 						keyExtractor={(key) => key.driverId.toString()}
 						showsVerticalScrollIndicator={false}
@@ -94,6 +96,8 @@ const styles = StyleSheet.create({
 	container: {
 		marginTop: 10,
 		height: 675,
+		// alignItems: 'center',
+		justifyContent: 'center',
 		//backgroundColor: 'green',
 	},
 	item: {
